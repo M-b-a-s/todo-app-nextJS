@@ -1,15 +1,32 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddTodo from "@/components/AddTodo";
 import TodoList from "@/components/TodoList";
 
 const Home = () => {
   const [todos, setTodos] = useState([]);
 
+  // get all todos
+  const getTodos = async () => {
+    try {
+      const res = await fetch("https://4296-2c0f-2a80-75-6900-8032-a0b1-5145-259c.ngrok-free.app/todo")
+      const data = await res.json()
+      setTodos(data)
+      console.log(data)
+    } catch (error) {
+      console.error("Error fetching data: ", error)
+    }
+    
+  }
+
+  useEffect(() => {
+    getTodos()
+  }, [])
+
   // create todo
-  const addTodo = (text) => {
-    setTodos([...todos, {id: Date.now(), text}])
+  const addTodo = (title, desc) => {
+    setTodos([...todos, {id: Date.now(), title, desc}])
   }
 
   // edit todo

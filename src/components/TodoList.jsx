@@ -3,19 +3,22 @@ import { useState } from "react";
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid'
 
 const TodoList = ({ todos, updateTodo, deleteTodo }) => {
-  const [editText, setEditText] = useState("");
+  const [editTitle, setEditTitle] = useState("");
+  const [editDesc, setEditDesc] = useState("");
   const [editingId, setEditingId] = useState(null);
 
-  const handleEditClick = (id, text) => {
+  const handleEditClick = (id, title, desc) => {
     setEditingId(id);
-    setEditText(text);
+    setEditTitle(title);
+    setEditDesc(desc);
   };
 
   const handleSaveClick = (id) => {
-    if (editText.trim() !== "") {
-      updateTodo(id, editText);
+    if (editTitle.trim() !== "") {
+      updateTodo(id, editTitle, editDesc);
       setEditingId(null);
-      setEditText("");
+      setEditTitle("");
+      setEditDesc("");
     }
   };
 
@@ -36,16 +39,19 @@ const TodoList = ({ todos, updateTodo, deleteTodo }) => {
                   value={editText}
                   onChange={(e) => setEditText(e.target.value)}
                 />
-                <button className="bg-lime-700 text-white-950 p-2 rounded-lg" onClick={() => handleSaveClick(todo.id, todo.text)}>
+                <button className="bg-lime-700 text-white-950 p-2 rounded-lg" onClick={() => handleSaveClick(todo.id, todo.title, todo.desc)}>
                   Save
                 </button>
               </div>
             ) : (
-              <div className="flex justify-between">
-                {todo.text}
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col">
+                  <span className="font-bold">{todo.title}</span>
+                  <span>{todo.desc}</span>
+                </div>
                 <div className="flex">
-                  <PencilSquareIcon className="h-5 w-5 cursor-pointer" onClick={() => handleEditClick(todo.id, todo.text)}/>
-                  <TrashIcon className="h-5 w-5 cursor-pointer" onClick={() => deleteTodo(todo.id, todo.text)}/>
+                  <PencilSquareIcon className="h-5 w-5 cursor-pointer" onClick={() => handleEditClick(todo.id, todo.title)}/>
+                  <TrashIcon className="h-5 w-5 cursor-pointer" onClick={() => deleteTodo(todo.id, todo.title)}/>
                 </div>
               </div>
             )}

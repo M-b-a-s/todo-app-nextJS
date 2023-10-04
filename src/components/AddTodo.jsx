@@ -1,39 +1,52 @@
 import { useState } from "react";
 
 const AddTodo = ({ addTodo }) => {
-  const [text, setText] = useState("");
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
   const [showError, setShowError] = useState({message: '', hasError: false})
 
   const handleAddClick = (e) => {
     e.preventDefault()
 
-    if (text.trim() === "") {
+    if (title.trim() === "") {
       setShowError({message: 'Please add todo!!!', hasError: true})
 
     } else {
-      addTodo(text);
-      setText("");
+      addTodo(title);
+      addTodo(desc);
+      setTitle("");
+      setDesc("");
       setShowError({message: '', hasError: false})
     }
     
-    // console.log(text)
   };
 
   return (
     <>
+      <label htmlFor="text" className="text-black">Title:</label>
       <input
         type="text"
         className=" text-black border-2 border-slate-700 p-3 w-full placeholder:text-grey-950 rounded-lg"
-        placeholder="Add todo"
-        value={text}
+        placeholder="Add Title"
+        value={title}
         onChange={(e) => {
-          setText(e.target.value)
+          setTitle(e.target.value)
           setShowError({hasError: false})
         }}
       />
-      {/* <ErrorMsg /> */}
+      <label htmlFor="text" className="text-black">Description:</label>
+      <input
+        type="text"
+        className=" text-black border-2 border-slate-700 p-3 w-full placeholder:text-grey-950 rounded-lg"
+        placeholder="Add Description"
+        value={desc}
+        onChange={(e) => {
+          setDesc(e.target.value)
+          setShowError({hasError: false})
+        }}
+      />
       
-      {showError.hasError && <div className="bg-red-700 w-64 rounded-lg animate-pulse mt-1">
+      {showError.hasError && <div className="text-red-700 rounded-lg mt-1">
       {showError.message}
      </div>}
 

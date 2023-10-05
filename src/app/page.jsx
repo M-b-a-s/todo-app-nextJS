@@ -30,8 +30,8 @@ const Home = () => {
   }
 
   // edit todo
-  const updateTodo = (id, newText) => {
-    const updatedTodos = todos.map((todo) => todo.id === id ? {...todo, text: newText} : todo);
+  const updateTodo = (id, newTitle, newDesc) => {
+    const updatedTodos = todos.map((todo) => todo.id === id ? {...todo, title: newTitle, desc: newDesc} : todo);
 
     setTodos(updatedTodos)
   }

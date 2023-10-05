@@ -1,26 +1,24 @@
 import { useState } from "react";
 
 const AddTodo = ({ addTodo }) => {
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
+  const [todo, setTodo] = useState({title: '', desc: ''});
   const [showError, setShowError] = useState({message: '', hasError: false})
 
   const handleAddClick = (e) => {
     e.preventDefault()
 
-    if (title.trim() === "") {
-      setShowError({message: 'Please add todo!!!', hasError: true})
-
+    // check if input fields are empty
+    if (todo.title.trim() === "" && todo.desc.trim() === "") {
+      setShowError({message: 'Please add title and description!!!', hasError: true})
     } else {
-      addTodo(title);
-      addTodo(desc);
-      setTitle("");
-      setDesc("");
+      // add todo to the todolist
+      addTodo(todo.title, todo.desc);
+      // clear input fields and error message
+      setTodo({ title: "", desc: "" });
       setShowError({message: '', hasError: false})
     }
     
-  };
-
+  }
   return (
     <>
       <label htmlFor="text" className="text-black">Title:</label>
@@ -28,9 +26,9 @@ const AddTodo = ({ addTodo }) => {
         type="text"
         className=" text-black border-2 border-slate-700 p-3 w-full placeholder:text-grey-950 rounded-lg"
         placeholder="Add Title"
-        value={title}
+        value={todo.title}
         onChange={(e) => {
-          setTitle(e.target.value)
+          setTodo({ ...todo, title: e.target.value });
           setShowError({hasError: false})
         }}
       />
@@ -39,9 +37,9 @@ const AddTodo = ({ addTodo }) => {
         type="text"
         className=" text-black border-2 border-slate-700 p-3 w-full placeholder:text-grey-950 rounded-lg"
         placeholder="Add Description"
-        value={desc}
+        value={todo.desc}
         onChange={(e) => {
-          setDesc(e.target.value)
+          setTodo({ ...todo, desc: e.target.value });
           setShowError({hasError: false})
         }}
       />
@@ -60,5 +58,4 @@ const AddTodo = ({ addTodo }) => {
     </>
   );
 };
-
 export default AddTodo;

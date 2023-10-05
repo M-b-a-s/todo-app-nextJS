@@ -14,7 +14,7 @@ const TodoList = ({ todos, updateTodo, deleteTodo }) => {
   };
 
   const handleSaveClick = (id) => {
-    if (editTitle.trim() !== "") {
+    if (editTitle.trim() !== "" && editDesc.trim() !== "") {
       updateTodo(id, editTitle, editDesc);
       setEditingId(null);
       setEditTitle("");
@@ -36,8 +36,15 @@ const TodoList = ({ todos, updateTodo, deleteTodo }) => {
                 className="text-black border-2 border-slate-700 p-3 w-full placeholder:text-grey-950 rounded-lg mb-5"
                 placeholder="Edit todo"
                   type="text"
-                  value={editText}
-                  onChange={(e) => setEditText(e.target.value)}
+                  value={editTitle}
+                  onChange={(e) => setEditTitle(e.target.value)}
+                />
+                <input
+                className="text-black border-2 border-slate-700 p-3 w-full placeholder:text-grey-950 rounded-lg mb-5"
+                placeholder="Edit todo"
+                  type="text"
+                  value={editDesc}
+                  onChange={(e) => setEditDesc(e.target.value)}
                 />
                 <button className="bg-lime-700 text-white-950 p-2 rounded-lg" onClick={() => handleSaveClick(todo.id, todo.title, todo.desc)}>
                   Save
@@ -50,8 +57,8 @@ const TodoList = ({ todos, updateTodo, deleteTodo }) => {
                   <span>{todo.desc}</span>
                 </div>
                 <div className="flex">
-                  <PencilSquareIcon className="h-5 w-5 cursor-pointer" onClick={() => handleEditClick(todo.id, todo.title)}/>
-                  <TrashIcon className="h-5 w-5 cursor-pointer" onClick={() => deleteTodo(todo.id, todo.title)}/>
+                  <PencilSquareIcon className="h-5 w-5 cursor-pointer" onClick={() => handleEditClick(todo.id, todo.title, todo.desc)}/>
+                  <TrashIcon className="h-5 w-5 cursor-pointer" onClick={() => deleteTodo(todo.id, todo.title, todo.desc)}/>
                 </div>
               </div>
             )}

@@ -7,10 +7,10 @@ const TodoList = ({ todos, updateTodo, deleteTodo }) => {
   const [editDesc, setEditDesc] = useState("");
   const [editingId, setEditingId] = useState(null);
 
-  const handleEditClick = (id, title, desc) => {
+  const handleEditClick = (id, title, description) => {
     setEditingId(id);
     setEditTitle(title);
-    setEditDesc(desc);
+    setEditDesc(description);
   };
 
   const handleSaveClick = (id) => {
@@ -34,19 +34,19 @@ const TodoList = ({ todos, updateTodo, deleteTodo }) => {
               <div className="">
                 <input
                 className="text-black border-2 border-slate-700 p-3 w-full placeholder:text-grey-950 rounded-lg mb-5"
-                placeholder="Edit todo"
+                placeholder="Edit title"
                   type="text"
                   value={editTitle}
                   onChange={(e) => setEditTitle(e.target.value)}
                 />
                 <input
                 className="text-black border-2 border-slate-700 p-3 w-full placeholder:text-grey-950 rounded-lg mb-5"
-                placeholder="Edit todo"
+                placeholder="Edit descritpion"
                   type="text"
                   value={editDesc}
                   onChange={(e) => setEditDesc(e.target.value)}
                 />
-                <button className="bg-lime-700 text-white-950 p-2 rounded-lg" onClick={() => handleSaveClick(todo.id, todo.title, todo.desc)}>
+                <button className="bg-lime-700 text-white-950 p-2 rounded-lg" onClick={() => handleSaveClick(todo.id, todo.title, todo.description)}>
                   Save
                 </button>
               </div>
@@ -54,11 +54,11 @@ const TodoList = ({ todos, updateTodo, deleteTodo }) => {
               <div className="flex justify-between items-center">
                 <div className="flex flex-col">
                   <span className="font-bold">{todo.title}</span>
-                  <span>{todo.desc}</span>
+                  <span>{todo.description}</span>
                 </div>
                 <div className="flex">
-                  <PencilSquareIcon className="h-5 w-5 cursor-pointer" onClick={() => handleEditClick(todo.id, todo.title, todo.desc)}/>
-                  <TrashIcon className="h-5 w-5 cursor-pointer" onClick={() => deleteTodo(todo.id, todo.title, todo.desc)}/>
+                  <PencilSquareIcon className="h-5 w-5 cursor-pointer" onClick={() => handleEditClick(todo.id, todo.title, todo.description)}/>
+                  <TrashIcon className="h-5 w-5 cursor-pointer" onClick={() => deleteTodo(todo.id)}/>
                 </div>
               </div>
             )}

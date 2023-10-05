@@ -8,7 +8,7 @@ const AddTodo = ({ addTodo }) => {
     e.preventDefault()
 
     // check if input fields are empty
-    if (todo.title.trim() === "" && todo.desc.trim() === "") {
+    if (todo.title.trim() === "" || todo.desc.trim() === "") {
       setShowError({message: 'Please add title and description!!!', hasError: true})
     } else {
       // add todo to the todolist

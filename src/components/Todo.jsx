@@ -57,7 +57,7 @@ const Todo = () => {
   // edit todo
   const updateTodo = async (id, newTitle, newDesc) => {
     try {
-      const res = await fetch(`https://87fd-2c0f-2a80-75-6900-1096-f59e-a523-eb4f.ngrok-free.app/todo?id=${id}`, {
+      const res = await fetch(`${API_URL}/todo?id=${id}`, {
         method: 'PUT',
         headers: {
           "Content-type": "application/json charset=UTF-8",
@@ -82,7 +82,7 @@ const Todo = () => {
   // delete todo
   const deleteTodo = async (id) => {
     try {
-      const res = await fetch(`https://87fd-2c0f-2a80-75-6900-1096-f59e-a523-eb4f.ngrok-free.app/todo?id=${id}`, {
+      const res = await fetch(`${API_URL}/todo?id=${id}`, {
         method: 'DELETE',
         headers: {
           "Content-type": "application/json charset=UTF-8",

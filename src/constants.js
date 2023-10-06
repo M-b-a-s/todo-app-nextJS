@@ -1,0 +1,1 @@
+export const API_URL = 'https://b2bc-102-215-57-16.ngrok-free.app';

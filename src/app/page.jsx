@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import AddTodo from "@/components/AddTodo";
 import TodoList from "@/components/TodoList";
+import { API_URL } from "@/constants";
 
 const Home = () => {
   const [todos, setTodos] = useState([]);
@@ -11,7 +12,7 @@ const Home = () => {
   const getTodos = async () => {
     try {
       const res = await fetch(
-        "https://87fd-2c0f-2a80-75-6900-1096-f59e-a523-eb4f.ngrok-free.app/todo",
+        `${API_URL}/todo"`,
         { headers: new Headers({ "ngrok-skip-browser-warning": "69420" }) }
       );
       const data = await res.json();
@@ -29,7 +30,7 @@ const Home = () => {
   // create todo
   const addTodo = async (title, description) => {
     try {
-      const res = await fetch("https://87fd-2c0f-2a80-75-6900-1096-f59e-a523-eb4f.ngrok-free.app/todo", {
+      const res = await fetch(`${API_URL}/todo`, {
       method: "POST",
       body: JSON.stringify({
         id: Date.now(),

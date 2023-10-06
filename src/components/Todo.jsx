@@ -33,7 +33,6 @@ const Todo = () => {
       const res = await fetch(`${API_URL}/todo`, {
       method: "POST",
       body: JSON.stringify({
-        id: Date.now(),
         title: title,
         description: description,
       }),
@@ -41,11 +40,10 @@ const Todo = () => {
         "Content-type": "application/json",
         "ngrok-skip-browser-warning": "69420"
       },
-      
     })
-    if (res.status === 200) {
-      const data = await res.json()
-      setTodos((todos) => [data, ...todos])
+    if (res.status === 201) {
+      // const data = await res.json()
+      getTodos();
     } else {
       return
     }

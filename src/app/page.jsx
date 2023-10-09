@@ -5,7 +5,7 @@ import Todo from "@/components/Todo"
 const Home = () => {
  
   return (
-    <div>
+    <div className="overflow-y-hidden">
       <Todo />
     </div>
   )

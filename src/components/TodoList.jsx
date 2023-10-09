@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
 // icons
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid'
 
@@ -6,6 +7,25 @@ const TodoList = ({ todos, updateTodo, deleteTodo }) => {
   const [editTitle, setEditTitle] = useState("");
   const [editDesc, setEditDesc] = useState("");
   const [editingId, setEditingId] = useState(null);
+
+  // Modal(Delete confirmation dialog)
+  const [showModal, setShowModal] = useState(false)
+
+  // show modal 
+  const handleDeleteBtnClick = () => {
+    setShowModal(true)
+  }
+
+  // handle confirmation
+  const handleConfirmed = () => {
+    deleteTodo()
+    setShowModal(false)
+  }
+
+  // handle Cancellation
+  const handleCanceled = () => {
+    setShowModal(false)
+  }
 
   const handleEditClick = (id, title, description) => {
     setEditingId(id);
@@ -23,8 +43,8 @@ const TodoList = ({ todos, updateTodo, deleteTodo }) => {
   };
 
   return (
-    <div>
-      <ul>
+    <div className="max-h-64 overflow-scroll">
+      <ul className="text-left">
         {todos.map((todo) => (
           <li
             className="bg-slate-700 my-2 p-3"

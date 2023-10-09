@@ -106,12 +106,12 @@ const Todo = () => {
         <h1 className="text-slate-950 text-4xl font-bold mb-5">Todos</h1>
         <form>
           <AddTodo addTodo={addTodo} />
-          <TodoList
+        </form>
+        <TodoList
             todos={todos}
             updateTodo={updateTodo}
             deleteTodo={deleteTodo}
           />
-        </form>
       </div>
     </main>
   );

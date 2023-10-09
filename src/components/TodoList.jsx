@@ -18,7 +18,7 @@ const TodoList = ({ todos, updateTodo, deleteTodo }) => {
 
   // handle confirmation
   const handleConfirmed = () => {
-    deleteTodo() 
+    deleteTodo()
     setShowModal(false)
   }
 
@@ -80,7 +80,7 @@ const TodoList = ({ todos, updateTodo, deleteTodo }) => {
                   <PencilSquareIcon className="h-5 w-5 cursor-pointer" onClick={() => handleEditClick(todo.id, todo.title, todo.description)}/>
                   <TrashIcon className="h-5 w-5 cursor-pointer" onClick={() => handleDeleteBtnClick()}/>
 
-                  {showModal && <DeleteConfirmationModal onCancel={handleCanceled} onConfirm={handleConfirmed}/>}
+                  {showModal && <DeleteConfirmationModal onCancel={handleCanceled} onClose={handleCanceled} onConfirm={handleConfirmed}/>}
                 </div>
               </div>
             )}
